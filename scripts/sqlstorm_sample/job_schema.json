@@ -1,0 +1,880 @@
+{
+  "dataset": "job",
+  "tables": {
+    "aka_name": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "person_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "imdb_index",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_cf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_nf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "surname_pcode",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "aka_title": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "title",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "imdb_index",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "kind_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "production_year",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "phonetic_code",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "episode_of_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "season_nr",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "episode_nr",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "cast_info": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "person_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "person_role_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "nr_order",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "role_id",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "char_name": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "imdb_index",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "imdb_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_nf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "surname_pcode",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "comp_cast_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "kind",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "company_name": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "country_code",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "imdb_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_nf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_sf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "company_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "kind",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "complete_cast": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "subject_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "status_id",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "info_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "keyword": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "keyword",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "phonetic_code",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "kind_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "kind",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "link_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "link",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "movie_companies": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "company_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "company_type_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "movie_info": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info_type_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "movie_info_idx": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info_type_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "movie_keyword": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "keyword_id",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "movie_link": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "linked_movie_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "link_type_id",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "name": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "imdb_index",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "imdb_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "gender",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_cf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "name_pcode_nf",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "surname_pcode",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "person_info": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "person_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info_type_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "note",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "role_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "role",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    },
+    "title": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "title",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "imdb_index",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "kind_id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "production_year",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "imdb_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "phonetic_code",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "episode_of_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "season_nr",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "episode_nr",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "series_years",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "md5sum",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ]
+    }
+  },
+  "foreign_keys": [
+    {
+      "src_table": "cast_info",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_companies",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_info",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_info_idx",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_link",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "aka_title",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "complete_cast",
+      "src_column": "movie_id",
+      "dst_table": "title",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "aka_name",
+      "src_column": "person_id",
+      "dst_table": "name",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "person_id",
+      "dst_table": "aka_name",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "person_info",
+      "src_column": "person_id",
+      "dst_table": "name",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "person_role_id",
+      "dst_table": "char_name",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_companies",
+      "src_column": "company_id",
+      "dst_table": "company_name",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_companies",
+      "src_column": "company_type_id",
+      "dst_table": "company_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_info",
+      "src_column": "info_type_id",
+      "dst_table": "info_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_info_idx",
+      "src_column": "info_type_id",
+      "dst_table": "info_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "keyword_id",
+      "dst_table": "keyword",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "title",
+      "src_column": "kind_id",
+      "dst_table": "kind_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_link",
+      "src_column": "link_type_id",
+      "dst_table": "link_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "role_id",
+      "dst_table": "role_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "complete_cast",
+      "src_column": "subject_id",
+      "dst_table": "comp_cast_type",
+      "dst_column": "id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "movie_id",
+      "dst_table": "cast_info",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "movie_id",
+      "dst_table": "movie_info",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "movie_id",
+      "dst_table": "movie_info_idx",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_keyword",
+      "src_column": "movie_id",
+      "dst_table": "movie_companies",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "movie_id",
+      "dst_table": "movie_info",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "movie_id",
+      "dst_table": "movie_info_idx",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "cast_info",
+      "src_column": "movie_id",
+      "dst_table": "movie_companies",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_info",
+      "src_column": "movie_id",
+      "dst_table": "movie_info_idx",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_info",
+      "src_column": "movie_id",
+      "dst_table": "movie_companies",
+      "dst_column": "movie_id"
+    },
+    {
+      "src_table": "movie_info_idx",
+      "src_column": "movie_id",
+      "dst_table": "movie_companies",
+      "dst_column": "movie_id"
+    }
+  ]
+}

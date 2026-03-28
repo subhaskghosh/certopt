@@ -1,0 +1,14 @@
+SELECT DISTINCT
+  p.email
+FROM PERSON AS P
+LEFT JOIN (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS COUNT_EMAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS C
+  ON c.email = p.email
+WHERE
+  c.count_email > 1

@@ -1,0 +1,13 @@
+SELECT
+  a.name AS CUSTOMERS
+FROM CUSTOMERS AS A
+WHERE
+  NOT EXISTS(
+    (
+      SELECT
+        B.CUSTOMERID
+      FROM ORDERS AS B
+      WHERE
+        B.CUSTOMERID = A.ID
+    )
+  )

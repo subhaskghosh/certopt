@@ -1,0 +1,15 @@
+{
+  "suite": "leetcode",
+  "input_equ_traces": 500,
+  "certificates_generated": 500,
+  "skip_parse": 0,
+  "skip_verify": 0,
+  "skip_cert_build": 0,
+  "replay_passed": 500,
+  "replay_failed": 0,
+  "pass_rate": 100.0,
+  "mean_replay_ms": 110.4,
+  "median_replay_ms": 42.3,
+  "p95_replay_ms": 424.1,
+  "max_replay_ms": 578.1
+}

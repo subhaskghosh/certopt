@@ -1,0 +1,11 @@
+SELECT
+  c.name AS CUSTOMERS
+FROM CUSTOMERS AS C
+LEFT JOIN ORDERS AS O
+  ON c.id = o.customerid
+WHERE
+  NOT C.ID IN (
+    SELECT
+      CUSTOMERID
+    FROM ORDERS
+  )

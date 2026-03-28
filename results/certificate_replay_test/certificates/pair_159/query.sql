@@ -1,0 +1,7 @@
+SELECT
+  email
+FROM PERSON AS A
+GROUP BY
+  email
+HAVING
+  COUNT(email) > 1

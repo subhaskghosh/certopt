@@ -1,0 +1,10 @@
+{
+  "benchmark": "sqlstorm",
+  "dataset": "tpch",
+  "k_rows": 2,
+  "timeout_ms": 5000,
+  "validate": true,
+  "max_pairs": 400,
+  "dialect": "postgres",
+  "at_most_k": true
+}

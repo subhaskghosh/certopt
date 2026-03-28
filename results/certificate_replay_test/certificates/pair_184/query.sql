@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS NUMEMAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS DUPES
+WHERE
+  numemail > 1

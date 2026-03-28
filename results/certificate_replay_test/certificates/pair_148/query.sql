@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS OCCURENCES
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS SUB
+WHERE
+  occurences > 1

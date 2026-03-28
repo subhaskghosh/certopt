@@ -1,0 +1,14 @@
+SELECT
+  name AS CUSTOMERS
+FROM (
+  SELECT
+    NAME,
+    ID
+  FROM CUSTOMERS
+  WHERE
+    NOT ID IN (
+      SELECT
+        CUSTOMERID
+      FROM ORDERS
+    )
+) AS SUBQ

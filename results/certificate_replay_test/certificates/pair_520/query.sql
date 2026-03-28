@@ -1,0 +1,7 @@
+SELECT
+  name AS CUSTOMERS
+FROM CUSTOMERS AS A
+LEFT JOIN ORDERS AS B
+  ON a.id = b.customerid
+WHERE
+  b.id IS NULL

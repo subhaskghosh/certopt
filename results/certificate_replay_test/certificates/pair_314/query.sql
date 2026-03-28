@@ -1,0 +1,11 @@
+SELECT DISTINCT
+  email AS EMAIL
+FROM PERSON AS A
+WHERE
+  2 <= (
+    SELECT
+      COUNT(*)
+    FROM PERSON AS B
+    WHERE
+      A.EMAIL = B.EMAIL
+  )

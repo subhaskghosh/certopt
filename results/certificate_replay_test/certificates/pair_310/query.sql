@@ -1,0 +1,7 @@
+SELECT DISTINCT
+  p1.email AS EMAIL
+FROM PERSON AS P1
+JOIN PERSON AS P2
+  ON TRUE
+WHERE
+  p1.email = p2.email AND p1.id > p2.id

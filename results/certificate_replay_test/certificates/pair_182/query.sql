@@ -1,0 +1,5 @@
+SELECT DISTINCT
+  p1.email
+FROM PERSON AS P1
+JOIN PERSON AS P2
+  ON p1.id <> p2.id AND p1.email = p2.email

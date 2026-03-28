@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    COUNT(EMAIL) AS EMAILCOUNT,
+    EMAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS TMP1
+WHERE
+  emailcount > 1

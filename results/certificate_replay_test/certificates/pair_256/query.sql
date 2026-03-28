@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS C
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS COUNTER
+WHERE
+  c > 1

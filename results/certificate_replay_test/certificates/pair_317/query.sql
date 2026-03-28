@@ -1,0 +1,13 @@
+SELECT
+  p1.email AS EMAIL
+FROM PERSON AS P1
+GROUP BY
+  p1.email
+HAVING
+  (
+    SELECT
+      COUNT(EMAIL)
+    FROM PERSON AS P2
+    WHERE
+      P2.EMAIL = P1.EMAIL
+  ) > 1

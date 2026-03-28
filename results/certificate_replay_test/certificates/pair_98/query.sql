@@ -1,0 +1,18 @@
+SELECT
+  firstname,
+  lastname,
+  (
+    SELECT
+      CITY
+    FROM ADDRESS
+    WHERE
+      PERSONID = P1.PERSONID
+  ) AS CITY,
+  (
+    SELECT
+      STATE
+    FROM ADDRESS
+    WHERE
+      PERSONID = P1.PERSONID
+  ) AS STATE
+FROM PERSON AS P1

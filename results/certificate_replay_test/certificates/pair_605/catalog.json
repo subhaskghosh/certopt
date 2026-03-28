@@ -1,0 +1,52 @@
+{
+  "tables": {
+    "ACTIVITY": {
+      "name": "ACTIVITY",
+      "columns": [
+        {
+          "name": "PLAYER_ID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "EVENT_DATE",
+          "sem_type": "DATE",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "DEVICE_ID",
+          "sem_type": "INT",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "GAMES_PLAYED",
+          "sem_type": "INT",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        }
+      ],
+      "primary_keys": [],
+      "primary_key_groups": [
+        [
+          "PLAYER_ID",
+          "EVENT_DATE"
+        ]
+      ],
+      "unique_columns": [],
+      "row_count": null,
+      "description": null
+    }
+  },
+  "foreign_keys": []
+}

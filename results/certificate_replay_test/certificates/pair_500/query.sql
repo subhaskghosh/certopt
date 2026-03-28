@@ -1,0 +1,14 @@
+SELECT
+  c.name AS CUSTOMERS
+FROM (
+  SELECT
+    COUNT(*) AS ORDER_COUNT,
+    CUSTOMERID
+  FROM ORDERS
+  GROUP BY
+    CUSTOMERID
+) AS O
+RIGHT JOIN CUSTOMERS AS C
+  ON c.id = o.customerid
+WHERE
+  o.order_count IS NULL

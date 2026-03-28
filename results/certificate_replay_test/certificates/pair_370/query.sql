@@ -1,0 +1,15 @@
+SELECT
+  t1.email
+FROM PERSON AS T1
+JOIN (
+  SELECT
+    ID,
+    EMAIL,
+    COUNT(EMAIL) AS ECOUNT
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS T2
+  ON t1.id = t2.id
+WHERE
+  t2.ecount > 1

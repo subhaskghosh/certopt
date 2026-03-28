@@ -1,0 +1,11 @@
+SELECT DISTINCT
+  email
+FROM PERSON AS P1
+WHERE
+  (
+    SELECT
+      COUNT(*)
+    FROM PERSON AS P2
+    WHERE
+      P2.EMAIL = P1.EMAIL
+  ) > 1

@@ -1,0 +1,9 @@
+SELECT
+  customers.name AS CUSTOMERS
+FROM CUSTOMERS
+WHERE
+  NOT ID IN (
+    SELECT
+      CUSTOMERID
+    FROM ORDERS
+  )

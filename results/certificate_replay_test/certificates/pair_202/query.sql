@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS EMAIL_QUANTITY
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS TABLE_INFO
+WHERE
+  email_quantity > 1

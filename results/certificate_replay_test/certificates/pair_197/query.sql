@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS COUNT_
+  FROM PERSON
+  GROUP BY
+    PERSON.EMAIL
+) AS FOO
+WHERE
+  count_ > 1

@@ -1,0 +1,12 @@
+SELECT DISTINCT
+  email AS EMAIL
+FROM PERSON AS P1
+WHERE
+  p1.id <> (
+    SELECT
+      P2.ID
+    FROM PERSON AS P2
+    WHERE
+      P1.EMAIL = P2.EMAIL AND P1.ID <> P2.ID
+    LIMIT 1
+  )

@@ -1,0 +1,283 @@
+{
+  "version": "1.1",
+  "timestamp": "2026-03-24T06:58:25Z",
+  "proof_kind": "equivalence",
+  "scope": {
+    "k_rows": 3,
+    "int_bounds": [
+      -10,
+      10
+    ],
+    "string_symbols": [
+      "s0",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "date_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "null_semantics": true,
+    "solver_timeout_ms": 10000
+  },
+  "ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": "t",
+        "column": "firstname"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": "t",
+        "column": "lastname"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": "e",
+        "column": "city"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": "e",
+        "column": "state"
+      }
+    ],
+    "from_table": {
+      "table": "PERSON",
+      "alias": "T"
+    },
+    "joins": [
+      {
+        "join_type": "LEFT",
+        "right": {
+          "table": "ADDRESS",
+          "alias": "E"
+        },
+        "on": {
+          "expr_type": "bin_op",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "op": "=",
+          "left": {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": "e",
+            "column": "personid"
+          },
+          "right": {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": "t",
+            "column": "personid"
+          }
+        }
+      }
+    ],
+    "where": {
+      "expr_type": "in_subquery",
+      "sem_type": "UNKNOWN",
+      "nullability": "UNKNOWN",
+      "provenance": null,
+      "alias": null,
+      "expr": {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": "T",
+        "column": "PERSONID"
+      },
+      "query": {
+        "select": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "PERSONID"
+          }
+        ],
+        "from_table": {
+          "table": "PERSON",
+          "alias": null
+        },
+        "joins": [],
+        "where": null,
+        "group_by": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "PERSONID"
+          }
+        ],
+        "having": null,
+        "order_by": [],
+        "limit": null,
+        "distinct": false,
+        "set_op": null,
+        "set_right": null,
+        "grain": null,
+        "order_intent": "COSMETIC",
+        "provenance": null,
+        "confidence": null,
+        "rationale": null
+      }
+    },
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "ir_hash": "2545747864de087a",
+  "sql": "SELECT\n  t.firstname,\n  t.lastname,\n  e.city,\n  e.state\nFROM PERSON AS T\nLEFT JOIN ADDRESS AS E\n  ON e.personid = t.personid\nWHERE\n  T.PERSONID IN (\n    SELECT\n      PERSONID\n    FROM PERSON\n    GROUP BY\n      PERSONID\n  )",
+  "sql_hash": "d01332aff95c55ef",
+  "catalog_hash": "764a64984bf2c303",
+  "dialect": "sqlite",
+  "constraints": [],
+  "solver_status": "skipped",
+  "solver_time_ms": 0,
+  "solver_stats": {},
+  "original_ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "firstname"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "lastname"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "city"
+      },
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "state"
+      }
+    ],
+    "from_table": {
+      "table": "PERSON",
+      "alias": "P"
+    },
+    "joins": [
+      {
+        "join_type": "LEFT",
+        "right": {
+          "table": "ADDRESS",
+          "alias": "A"
+        },
+        "on": {
+          "expr_type": "bin_op",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "op": "=",
+          "left": {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": "a",
+            "column": "personid"
+          },
+          "right": {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": "p",
+            "column": "personid"
+          }
+        }
+      }
+    ],
+    "where": null,
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "original_sql": "SELECT\n  firstname,\n  lastname,\n  city,\n  state\nFROM PERSON AS P\nLEFT JOIN ADDRESS AS A\n  ON a.personid = p.personid",
+  "original_ir_hash": "724b7c72a72a5c55",
+  "original_sql_hash": "d1046b7a4a509727",
+  "equivalence_status": "unsat",
+  "equivalence_solver_time_ms": 18.410707998555154,
+  "equivalence_proven_k": 3,
+  "equivalence_complete": true
+}

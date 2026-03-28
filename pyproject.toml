@@ -1,0 +1,33 @@
+[project]
+name = "certopt"
+version = "0.1.0"
+description = "Proof-Carrying Query Optimization via CEGIS"
+requires-python = ">=3.11"
+dependencies = [
+    "sqlglot>=25.0",
+    "z3-solver>=4.12",
+    "networkx>=3.0",
+    "pydantic>=2.0",
+    "pytest>=8.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.0"]
+llm-anthropic = ["anthropic>=0.30"]
+llm-amp = ["amp-sdk>=0.1"]
+validate = ["duckdb>=0.9"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]

@@ -1,0 +1,7 @@
+{
+  "benchmark": "job-complex",
+  "dialect": "postgres",
+  "k_rows": 2,
+  "max_pairs": null,
+  "data_dir": "data/JOB-Complex"
+}

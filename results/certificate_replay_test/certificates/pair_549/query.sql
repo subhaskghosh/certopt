@@ -1,0 +1,11 @@
+SELECT
+  name AS CUSTOMERS
+FROM (
+  SELECT
+    *
+  FROM CUSTOMERS AS C
+  LEFT JOIN ORDERS AS O
+    ON C.ID = O.CUSTOMERID
+) AS _subquery
+WHERE
+  customerid IS NULL

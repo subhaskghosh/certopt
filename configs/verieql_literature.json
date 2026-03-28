@@ -1,0 +1,10 @@
+{
+  "_description": "VeriEQL Literature benchmark — 50 pairs, formal witness proof",
+  "benchmark": "verieql",
+  "suite": "literature",
+  "k_rows": 3,
+  "timeout_ms": 10000,
+  "at_most_k": true,
+  "validate": true,
+  "output": "results/verieql_literature"
+}

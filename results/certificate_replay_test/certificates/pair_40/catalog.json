@@ -1,0 +1,104 @@
+{
+  "tables": {
+    "PERSON": {
+      "name": "PERSON",
+      "columns": [
+        {
+          "name": "PERSONID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "FIRSTNAME",
+          "sem_type": "STRING",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "LASTNAME",
+          "sem_type": "STRING",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        }
+      ],
+      "primary_keys": [
+        "PERSONID"
+      ],
+      "primary_key_groups": [
+        [
+          "PERSONID"
+        ]
+      ],
+      "unique_columns": [],
+      "row_count": null,
+      "description": null
+    },
+    "ADDRESS": {
+      "name": "ADDRESS",
+      "columns": [
+        {
+          "name": "ADDRESSID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "PERSONID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "CITY",
+          "sem_type": "STRING",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "STATE",
+          "sem_type": "STRING",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        }
+      ],
+      "primary_keys": [
+        "ADDRESSID",
+        "PERSONID"
+      ],
+      "primary_key_groups": [
+        [
+          "ADDRESSID"
+        ],
+        [
+          "PERSONID"
+        ]
+      ],
+      "unique_columns": [],
+      "row_count": null,
+      "description": null
+    }
+  },
+  "foreign_keys": [
+    {
+      "src_table": "ADDRESS",
+      "src_column": "PERSONID",
+      "dst_table": "PERSON",
+      "dst_column": "PERSONID"
+    }
+  ]
+}

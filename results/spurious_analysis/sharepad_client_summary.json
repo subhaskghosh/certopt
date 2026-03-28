@@ -1,0 +1,13 @@
+{
+  "role": "client",
+  "output_dir": "received/CertOpt/results",
+  "files_expected": 3,
+  "files_unpacked": 3,
+  "checksum_passed": 3,
+  "checksum_failed": 0,
+  "failed_files": [],
+  "missing_files": [],
+  "skipped_binary": [],
+  "chunks_received": 5,
+  "chunks_expected": 5
+}

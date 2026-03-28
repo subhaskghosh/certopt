@@ -1,0 +1,647 @@
+{
+  "dataset": "stackoverflow",
+  "tables": {
+    "Badges": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "UserId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "Date",
+          "type": "TIMESTAMP",
+          "nullable": false
+        },
+        {
+          "name": "Class",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "TagBased",
+          "type": "BOOL",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "CloseReasonTypes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "Comments": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "PostId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Score",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "Text",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": false
+        },
+        {
+          "name": "UserDisplayName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "UserId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ContentLicense",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "LinkTypes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "PostHistory": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "PostHistoryTypeId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "PostId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "RevisionGUID",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "UserId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "UserDisplayName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Comment",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Text",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "ContentLicense",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "PostHistoryTypes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "PostLinks": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": false
+        },
+        {
+          "name": "PostId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "RelatedPostId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "LinkTypeId",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "PostTypes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "Posts": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "PostTypeId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "AcceptedAnswerId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ParentId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "Score",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ViewCount",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "Body",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "OwnerUserId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "OwnerDisplayName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "LastEditorUserId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "LastEditorDisplayName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "LastEditDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "LastActivityDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "Title",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Tags",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "AnswerCount",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "CommentCount",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "FavoriteCount",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ClosedDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "CommunityOwnedDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "ContentLicense",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "Tags": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "TagName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Count",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "ExcerptPostId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "WikiPostId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "IsModeratorOnly",
+          "type": "BOOL",
+          "nullable": true
+        },
+        {
+          "name": "IsRequired",
+          "type": "BOOL",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "Users": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Reputation",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": false
+        },
+        {
+          "name": "DisplayName",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "LastAccessDate",
+          "type": "TIMESTAMP",
+          "nullable": false
+        },
+        {
+          "name": "WebsiteUrl",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Location",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "AboutMe",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "Views",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "UpVotes",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "DownVotes",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ProfileImageUrl",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "AccountId",
+          "type": "INT",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "VoteTypes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "Name",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    },
+    "Votes": {
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "PostId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "VoteTypeId",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "UserId",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "CreationDate",
+          "type": "TIMESTAMP",
+          "nullable": true
+        },
+        {
+          "name": "BountyAmount",
+          "type": "INT",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "Id"
+      ]
+    }
+  },
+  "foreign_keys": [
+    {
+      "src_table": "Badges",
+      "src_column": "UserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Posts",
+      "src_column": "PostTypeId",
+      "dst_table": "PostTypes",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Posts",
+      "src_column": "OwnerUserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Posts",
+      "src_column": "LastEditorUserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Posts",
+      "src_column": "AcceptedAnswerId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Posts",
+      "src_column": "ParentId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Comments",
+      "src_column": "PostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Comments",
+      "src_column": "UserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostHistory",
+      "src_column": "PostHistoryTypeId",
+      "dst_table": "PostHistoryTypes",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostHistory",
+      "src_column": "PostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostHistory",
+      "src_column": "UserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostLinks",
+      "src_column": "PostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostLinks",
+      "src_column": "RelatedPostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "PostLinks",
+      "src_column": "LinkTypeId",
+      "dst_table": "LinkTypes",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Tags",
+      "src_column": "ExcerptPostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Tags",
+      "src_column": "WikiPostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Votes",
+      "src_column": "PostId",
+      "dst_table": "Posts",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Votes",
+      "src_column": "VoteTypeId",
+      "dst_table": "VoteTypes",
+      "dst_column": "Id"
+    },
+    {
+      "src_table": "Votes",
+      "src_column": "UserId",
+      "dst_table": "Users",
+      "dst_column": "Id"
+    }
+  ]
+}

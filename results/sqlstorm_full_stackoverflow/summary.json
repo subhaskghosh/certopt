@@ -1,0 +1,20 @@
+{
+  "benchmark": "sqlstorm",
+  "dataset": "stackoverflow",
+  "total_pairs": 8558,
+  "parsed": 6183,
+  "our_equ": 5087,
+  "our_neq": 0,
+  "our_unknown": 1096,
+  "our_tmo": 2017,
+  "our_parse_fail": 358,
+  "our_error": 0,
+  "total_time_s": 66289.43,
+  "mean_time_ms": 7744.9,
+  "median_time_ms": 3521.0,
+  "p95_time_ms": 20005.3,
+  "max_time_ms": 20108.2,
+  "k_rows": 2,
+  "timeout_ms": 10000,
+  "validate": true
+}

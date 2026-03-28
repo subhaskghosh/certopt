@@ -1,0 +1,20 @@
+{
+  "benchmark": "sqlstorm",
+  "dataset": "tpcds",
+  "total_pairs": 400,
+  "parsed": 301,
+  "our_equ": 270,
+  "our_neq": 1,
+  "our_unknown": 30,
+  "our_tmo": 56,
+  "our_parse_fail": 43,
+  "our_error": 0,
+  "total_time_s": 1351.73,
+  "mean_time_ms": 3378.7,
+  "median_time_ms": 1570.0,
+  "p95_time_ms": 12005.2,
+  "max_time_ms": 12007.1,
+  "k_rows": 2,
+  "timeout_ms": 5000,
+  "validate": true
+}

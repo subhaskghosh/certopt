@@ -1,0 +1,14 @@
+SELECT
+  name AS CUSTOMERS
+FROM CUSTOMERS
+LEFT JOIN (
+  SELECT
+    CUSTOMERID,
+    COUNT(*) AS NUM_ORDERS
+  FROM ORDERS
+  GROUP BY
+    CUSTOMERID
+) AS ORDERS
+  ON customers.id = orders.customerid
+WHERE
+  orders.num_orders IS NULL

@@ -1,0 +1,240 @@
+{
+  "version": "1.1",
+  "timestamp": "2026-03-24T06:58:32Z",
+  "proof_kind": "equivalence",
+  "scope": {
+    "k_rows": 3,
+    "int_bounds": [
+      -10,
+      10
+    ],
+    "string_symbols": [
+      "s0",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "date_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "null_semantics": true,
+    "solver_timeout_ms": 10000
+  },
+  "ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "email"
+      }
+    ],
+    "from_table": {
+      "query": {
+        "select": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "EMAIL"
+          },
+          {
+            "expr_type": "agg_call",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "func": "COUNT",
+            "arg": {
+              "expr_type": "column_ref",
+              "sem_type": "UNKNOWN",
+              "nullability": "UNKNOWN",
+              "provenance": null,
+              "alias": null,
+              "table": null,
+              "column": "EMAIL"
+            },
+            "distinct": false
+          }
+        ],
+        "from_table": {
+          "table": "PERSON",
+          "alias": null
+        },
+        "joins": [],
+        "where": null,
+        "group_by": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "EMAIL"
+          }
+        ],
+        "having": {
+          "expr_type": "bin_op",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "op": ">",
+          "left": {
+            "expr_type": "agg_call",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "func": "COUNT",
+            "arg": {
+              "expr_type": "column_ref",
+              "sem_type": "UNKNOWN",
+              "nullability": "UNKNOWN",
+              "provenance": null,
+              "alias": null,
+              "table": null,
+              "column": "EMAIL"
+            },
+            "distinct": false
+          },
+          "right": {
+            "expr_type": "literal",
+            "sem_type": "INT",
+            "nullability": "NOT_NULL",
+            "provenance": null,
+            "alias": null,
+            "value": 1
+          }
+        },
+        "order_by": [],
+        "limit": null,
+        "distinct": false,
+        "set_op": null,
+        "set_right": null,
+        "grain": null,
+        "order_intent": "COSMETIC",
+        "provenance": null,
+        "confidence": null,
+        "rationale": null
+      },
+      "alias": "T",
+      "column_aliases": []
+    },
+    "joins": [],
+    "where": null,
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "ir_hash": "863139aad2b72061",
+  "sql": "SELECT\n  email\nFROM (\n  SELECT\n    EMAIL,\n    COUNT(EMAIL)\n  FROM PERSON\n  GROUP BY\n    EMAIL\n  HAVING\n    COUNT(EMAIL) > 1\n) AS T",
+  "sql_hash": "206503935f21666d",
+  "catalog_hash": "1014378bdb47462e",
+  "dialect": "sqlite",
+  "constraints": [],
+  "solver_status": "skipped",
+  "solver_time_ms": 0,
+  "solver_stats": {},
+  "original_ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": "EMAIL",
+        "table": null,
+        "column": "email"
+      }
+    ],
+    "from_table": {
+      "table": "PERSON",
+      "alias": null
+    },
+    "joins": [],
+    "where": null,
+    "group_by": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "email"
+      }
+    ],
+    "having": {
+      "expr_type": "bin_op",
+      "sem_type": "UNKNOWN",
+      "nullability": "UNKNOWN",
+      "provenance": null,
+      "alias": null,
+      "op": ">",
+      "left": {
+        "expr_type": "agg_call",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "func": "COUNT",
+        "arg": {
+          "expr_type": "column_ref",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "table": null,
+          "column": "email"
+        },
+        "distinct": false
+      },
+      "right": {
+        "expr_type": "literal",
+        "sem_type": "INT",
+        "nullability": "NOT_NULL",
+        "provenance": null,
+        "alias": null,
+        "value": 1
+      }
+    },
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "original_sql": "SELECT\n  email AS EMAIL\nFROM PERSON\nGROUP BY\n  email\nHAVING\n  COUNT(email) > 1",
+  "original_ir_hash": "3105e1e6a0e4ee2f",
+  "original_sql_hash": "f2ed480dbeda0e2d",
+  "equivalence_status": "unsat",
+  "equivalence_solver_time_ms": 0.07720896974205971,
+  "equivalence_proven_k": 3,
+  "equivalence_complete": true
+}

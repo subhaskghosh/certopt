@@ -1,0 +1,6 @@
+SELECT DISTINCT
+  p1.email AS EMAIL
+FROM PERSON AS P1
+CROSS JOIN PERSON AS P2
+WHERE
+  p1.id < p2.id AND p1.email = p2.email

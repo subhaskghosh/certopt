@@ -1,0 +1,14 @@
+{
+  "benchmark": "verieql",
+  "suite": "calcite",
+  "k_rows": 4,
+  "timeout_ms": 30000,
+  "validate": true,
+  "max_pairs": null,
+  "dialect": "sqlite",
+  "pair_indices": null,
+  "random_sample": false,
+  "seed": 42,
+  "at_most_k": true,
+  "ignore_constraints": false
+}

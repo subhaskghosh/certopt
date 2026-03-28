@@ -1,0 +1,13 @@
+SELECT
+  per.email
+FROM PERSON AS PER
+JOIN (
+  SELECT
+    *
+  FROM PERSON AS P
+  GROUP BY
+    P.EMAIL
+  HAVING
+    COUNT(P.EMAIL) > 1
+) AS DU
+  ON du.id = per.id

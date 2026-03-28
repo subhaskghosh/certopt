@@ -1,0 +1,542 @@
+[
+  {
+    "id": "JOB-C01",
+    "original_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Sweden', 'Norway', 'Germany', 'Denmark')\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND ml.movie_id = mk.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mi.movie_id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Sweden', 'Norway', 'Germany', 'Denmark')\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND ml.movie_id = mk.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mi.movie_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 168.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C02",
+    "original_sql": "SELECT\n  MIN(cn.name) AS from_company,\n  MIN(lt.link) AS movie_link_type,\n  MIN(t.title) AS non_polish_sequel_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS from_company,\n  MIN(lt.link) AS movie_link_type,\n  MIN(t.title) AS non_polish_sequel_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 108.0,
+    "cost_optimized": 108.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 78.3,
+    "error": null
+  },
+  {
+    "id": "JOB-C03",
+    "original_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Denish',\n    'Norwegian',\n    'German'\n  )\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf\n  AND mk.movie_id = mc.movie_id\n  AND mc.company_id = cn.id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Denish',\n    'Norwegian',\n    'German'\n  )\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf\n  AND mk.movie_id = mc.movie_id\n  AND mc.company_id = cn.id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 89.8,
+    "error": null
+  },
+  {
+    "id": "JOB-C04",
+    "original_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Denish',\n    'Norwegian',\n    'German'\n  )\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS western_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Denish',\n    'Norwegian',\n    'German'\n  )\n  AND t.production_year BETWEEN 1950 AND 2000\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 97.7,
+    "error": null
+  },
+  {
+    "id": "JOB-C05",
+    "original_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_title AS at\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nWHERE\n  cct1.kind = 'crew'\n  AND cct2.kind <> 'complete+verified'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN ('Sweden', 'Germany', 'Swedish')\n  AND mi_idx.info >= '6.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND ci.nr_order = cc.status_id\n  AND at.imdb_index = t.imdb_index\n  AND ci.movie_id = t.id\n  AND ci.movie_id = mi.movie_id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_title AS at\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nWHERE\n  cct1.kind = 'crew'\n  AND cct2.kind <> 'complete+verified'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN ('Sweden', 'Germany', 'Swedish')\n  AND mi_idx.info >= '6.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND ci.nr_order = cc.status_id\n  AND at.imdb_index = t.imdb_index\n  AND ci.movie_id = t.id\n  AND ci.movie_id = mi.movie_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 244.0,
+    "cost_optimized": 244.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 167.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C06",
+    "original_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS german_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Germany', 'German')\n  AND t.production_year BETWEEN 2000 AND 2010\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS german_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Germany', 'German')\n  AND t.production_year BETWEEN 2000 AND 2010\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 88.1,
+    "error": null
+  },
+  {
+    "id": "JOB-C07",
+    "original_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS german_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Germany', 'German')\n  AND t.production_year BETWEEN 2000 AND 2010\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS company_name,\n  MIN(lt.link) AS link_type,\n  MIN(t.title) AS german_follow_up\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN link_type AS lt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN movie_link AS ml\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code <> '[pl]'\n  AND (\n    cn.name LIKE '%Film%' OR cn.name LIKE '%Warner%'\n  )\n  AND ct.kind = 'production companies'\n  AND k.keyword = 'sequel'\n  AND lt.link LIKE '%follow%'\n  AND mc.note IS NULL\n  AND mi.info IN ('Germany', 'German')\n  AND t.production_year BETWEEN 2000 AND 2010\n  AND lt.id = ml.link_type_id\n  AND ml.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_type_id = ct.id\n  AND mc.company_id = cn.id\n  AND mi.movie_id = t.id\n  AND ml.movie_id = mk.movie_id\n  AND ml.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND ml.movie_id = mi.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mc.movie_id = mi.movie_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 96.1,
+    "error": null
+  },
+  {
+    "id": "JOB-C08",
+    "original_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS complete_gore_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nWHERE\n  cct1.kind IN ('cast', 'crew')\n  AND cct2.kind = 'complete+verified'\n  AND ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.production_year > 2000\n  AND (\n    t.title LIKE '%Freddy%' OR t.title LIKE '%Jason%' OR t.title LIKE 'Saw%'\n  )\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = cc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND c.name_pcode_nf = n.name_pcode_nf\n  AND c.surname_pcode = n.surname_pcode",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS complete_gore_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nWHERE\n  cct1.kind IN ('cast', 'crew')\n  AND cct2.kind = 'complete+verified'\n  AND ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.production_year > 2000\n  AND (\n    t.title LIKE '%Freddy%' OR t.title LIKE '%Jason%' OR t.title LIKE 'Saw%'\n  )\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = cc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND c.name_pcode_nf = n.name_pcode_nf\n  AND c.surname_pcode = n.surname_pcode",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 199.0,
+    "cost_optimized": 199.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 135.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C09",
+    "original_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cct1.kind = 'crew'\n  AND cct2.kind <> 'complete+verified'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German',\n    'USA',\n    'American'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf\n  AND cc.subject_id = cct1.id\n  AND cc.status_id = cct2.id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cct1.kind = 'crew'\n  AND cct2.kind <> 'complete+verified'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German',\n    'USA',\n    'American'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND cn.name_pcode_sf = cn.name_pcode_nf\n  AND cc.subject_id = cct1.id\n  AND cc.status_id = cct2.id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 220.0,
+    "cost_optimized": 220.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 147.9,
+    "error": null
+  },
+  {
+    "id": "JOB-C10",
+    "original_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(t.title) AS movie_title\nFROM cast_info AS ci\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  ci.note IN ('(producer)', '(executive producer)')\n  AND it1.info = 'budget'\n  AND it2.info = 'votes'\n  AND n.gender = 'm'\n  AND n.name LIKE '%Tim%'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND cn.name_pcode_nf = n.surname_pcode\n  AND cn.name_pcode_sf = n.surname_pcode",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(t.title) AS movie_title\nFROM cast_info AS ci\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  ci.note IN ('(producer)', '(executive producer)')\n  AND it1.info = 'budget'\n  AND it2.info = 'votes'\n  AND n.gender = 'm'\n  AND n.name LIKE '%Tim%'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND cn.name_pcode_nf = n.surname_pcode\n  AND cn.name_pcode_sf = n.surname_pcode",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 108.0,
+    "cost_optimized": 108.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 75.4,
+    "error": null
+  },
+  {
+    "id": "JOB-C11",
+    "original_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS akn\n  ON TRUE\nJOIN aka_title AS akt\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND akn.imdb_index = akt.imdb_index\n  AND ci.nr_order = cc.status_id\n  AND akt.imdb_index = t.imdb_index",
+    "optimized_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS akn\n  ON TRUE\nJOIN aka_title AS akt\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND akn.imdb_index = akt.imdb_index\n  AND ci.nr_order = cc.status_id\n  AND akt.imdb_index = t.imdb_index",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 200.0,
+    "cost_optimized": 200.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 139.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C12",
+    "original_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year >= 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND ak.name_pcode_nf = chn.name_pcode_nf\n  AND cn.name_pcode_sf = n.name_pcode_nf\n  AND cn.name_pcode_nf = n.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year >= 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND ak.name_pcode_nf = chn.name_pcode_nf\n  AND cn.name_pcode_sf = n.name_pcode_nf\n  AND cn.name_pcode_nf = n.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 202.0,
+    "cost_optimized": 202.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 143.0,
+    "error": null
+  },
+  {
+    "id": "JOB-C13",
+    "original_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS western_violent_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_title AS at\n  ON TRUE\nJOIN aka_name AS an\n  ON TRUE\nWHERE\n  cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German',\n    'USA',\n    'American'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.imdb_index = at.imdb_index\n  AND at.movie_id = mc.movie_id\n  AND an.imdb_index = t.imdb_index\n  AND an.imdb_index = at.imdb_index\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS western_violent_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_title AS at\n  ON TRUE\nJOIN aka_name AS an\n  ON TRUE\nWHERE\n  cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German',\n    'USA',\n    'American'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.imdb_index = at.imdb_index\n  AND at.movie_id = mc.movie_id\n  AND an.imdb_index = t.imdb_index\n  AND an.imdb_index = at.imdb_index\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 191.0,
+    "cost_optimized": 191.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 133.9,
+    "error": null
+  },
+  {
+    "id": "JOB-C14",
+    "original_sql": "SELECT\n  MIN(k.keyword) AS movie_keyword,\n  MIN(n.name) AS actor_name,\n  MIN(t.title) AS marvel_movie\nFROM cast_info AS ci\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  k.keyword = 'marvel-cinematic-universe'\n  AND n.name LIKE '%Downey%'\n  AND t.production_year > 2000\n  AND k.id = mk.keyword_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND n.id = ci.person_id\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND ak.name_pcode_nf = cn.name_pcode_nf\n  AND ak.name_pcode_nf = cn.name_pcode_sf\n  AND ak.surname_pcode = n.surname_pcode",
+    "optimized_sql": "SELECT\n  MIN(k.keyword) AS movie_keyword,\n  MIN(n.name) AS actor_name,\n  MIN(t.title) AS marvel_movie\nFROM cast_info AS ci\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  k.keyword = 'marvel-cinematic-universe'\n  AND n.name LIKE '%Downey%'\n  AND t.production_year > 2000\n  AND k.id = mk.keyword_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND n.id = ci.person_id\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND ak.name_pcode_nf = cn.name_pcode_nf\n  AND ak.name_pcode_nf = cn.name_pcode_sf\n  AND ak.surname_pcode = n.surname_pcode",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 91.0,
+    "cost_optimized": 91.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 67.2,
+    "error": null
+  },
+  {
+    "id": "JOB-C15",
+    "original_sql": "SELECT\n  MIN(at.title) AS aka_title,\n  MIN(t.title) AS internet_movie_title\nFROM aka_title AS at\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND mi.note LIKE '%internet%'\n  AND t.production_year > 1990\n  AND t.id = at.movie_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = at.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = at.movie_id\n  AND mc.movie_id = at.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cn.name_pcode_nf = k.phonetic_code\n  AND cn.name_pcode_sf = k.phonetic_code",
+    "optimized_sql": "SELECT\n  MIN(at.title) AS aka_title,\n  MIN(t.title) AS internet_movie_title\nFROM aka_title AS at\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND mi.note LIKE '%internet%'\n  AND t.production_year > 1990\n  AND t.id = at.movie_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = at.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = at.movie_id\n  AND mc.movie_id = at.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cn.name_pcode_nf = k.phonetic_code\n  AND cn.name_pcode_sf = k.phonetic_code",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 129.0,
+    "cost_optimized": 129.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 88.8,
+    "error": null
+  },
+  {
+    "id": "JOB-C16",
+    "original_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(t.title) AS movie_title\nFROM cast_info AS ci\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  ci.note IN ('(producer)', '(executive producer)')\n  AND it1.info = 'budget'\n  AND it2.info = 'votes'\n  AND n.gender = 'm'\n  AND n.name LIKE '%Tim%'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(t.title) AS movie_title\nFROM cast_info AS ci\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  ci.note IN ('(producer)', '(executive producer)')\n  AND it1.info = 'budget'\n  AND it2.info = 'votes'\n  AND n.gender = 'm'\n  AND n.name LIKE '%Tim%'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 93.0,
+    "cost_optimized": 93.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 66.8,
+    "error": null
+  },
+  {
+    "id": "JOB-C17",
+    "original_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS western_violent_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN char_name AS ch\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nWHERE\n  cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN ('Germany', 'German', 'USA', 'American')\n  AND mi_idx.info < '7.0'\n  AND t.production_year > 2009\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND ak.imdb_index = n.imdb_index\n  AND n.imdb_index = t.imdb_index\n  AND ch.name = n.name",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS western_violent_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN char_name AS ch\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nWHERE\n  cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN ('Germany', 'German', 'USA', 'American')\n  AND mi_idx.info < '7.0'\n  AND t.production_year > 2009\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND ak.imdb_index = n.imdb_index\n  AND n.imdb_index = t.imdb_index\n  AND ch.name = n.name",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 200.0,
+    "cost_optimized": 200.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 145.4,
+    "error": null
+  },
+  {
+    "id": "JOB-C18",
+    "original_sql": "SELECT\n  MIN(mi.info) AS release_date,\n  MIN(t.title) AS modern_american_internet_movie\nFROM aka_title AS at\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND mi.note LIKE '%internet%'\n  AND NOT mi.info IS NULL\n  AND (\n    mi.info LIKE 'USA:% 199%' OR mi.info LIKE 'USA:% 200%'\n  )\n  AND t.production_year > 1990\n  AND t.id = at.movie_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = at.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = at.movie_id\n  AND mc.movie_id = at.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS release_date,\n  MIN(t.title) AS modern_american_internet_movie\nFROM aka_title AS at\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND mi.note LIKE '%internet%'\n  AND NOT mi.info IS NULL\n  AND (\n    mi.info LIKE 'USA:% 199%' OR mi.info LIKE 'USA:% 200%'\n  )\n  AND t.production_year > 1990\n  AND t.id = at.movie_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = at.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = at.movie_id\n  AND mc.movie_id = at.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 131.0,
+    "cost_optimized": 131.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 90.4,
+    "error": null
+  },
+  {
+    "id": "JOB-C19",
+    "original_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS violent_liongate_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND cn.name LIKE 'Lionsgate%'\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cn.id = mc.company_id\n  AND ak.name_pcode_nf = cn.name_pcode_nf\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND c.name_pcode_nf = ak.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS violent_liongate_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND cn.name LIKE 'Lionsgate%'\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cn.id = mc.company_id\n  AND ak.name_pcode_nf = cn.name_pcode_nf\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND c.name_pcode_nf = ak.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 191.0,
+    "cost_optimized": 191.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 146.9,
+    "error": null
+  },
+  {
+    "id": "JOB-C20",
+    "original_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind = 'complete'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND cc.subject_id = t.episode_nr\n  AND ci.movie_id = t.id\n  AND ci.nr_order = cc.subject_id",
+    "optimized_sql": "SELECT\n  MIN(cn.name) AS movie_company,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_euro_dark_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind = 'complete'\n  AND cn.country_code <> '[us]'\n  AND it1.info = 'countries'\n  AND it2.info = 'rating'\n  AND k.keyword IN ('murder', 'murder-in-title', 'blood', 'violence')\n  AND kt.kind IN ('movie', 'episode')\n  AND NOT mc.note LIKE '%(USA)%'\n  AND mc.note LIKE '%(200%)%'\n  AND mi.info IN (\n    'Sweden',\n    'Norway',\n    'Germany',\n    'Denmark',\n    'Swedish',\n    'Danish',\n    'Norwegian',\n    'German'\n  )\n  AND mi_idx.info < '8.5'\n  AND t.production_year > 2005\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = mi_idx.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND mi_idx.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND ct.id = mc.company_type_id\n  AND cn.id = mc.company_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND cc.subject_id = t.episode_nr\n  AND ci.movie_id = t.id\n  AND ci.nr_order = cc.subject_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 231.0,
+    "cost_optimized": 231.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 163.7,
+    "error": null
+  },
+  {
+    "id": "JOB-C21",
+    "original_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS violent_liongate_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nWHERE\n  ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND cn.name LIKE 'Lionsgate%'\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cn.id = mc.company_id\n  AND c.name_pcode_nf = n.name_pcode_nf\n  AND c.surname_pcode = n.name_pcode_cf",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS movie_budget,\n  MIN(mi_idx.info) AS movie_votes,\n  MIN(n.name) AS writer,\n  MIN(t.title) AS violent_liongate_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS c\n  ON TRUE\nWHERE\n  ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)')\n  AND cn.name LIKE 'Lionsgate%'\n  AND it1.info = 'genres'\n  AND it2.info = 'votes'\n  AND k.keyword IN ('murder', 'violence', 'blood', 'gore', 'death', 'female-nudity', 'hospital')\n  AND mi.info IN ('Horror', 'Thriller')\n  AND n.gender = 'm'\n  AND t.id = mi.movie_id\n  AND t.id = mi_idx.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND ci.movie_id = mi.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND ci.movie_id = mc.movie_id\n  AND mi.movie_id = mi_idx.movie_id\n  AND mi.movie_id = mk.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi_idx.movie_id = mk.movie_id\n  AND mi_idx.movie_id = mc.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND n.id = ci.person_id\n  AND it1.id = mi.info_type_id\n  AND it2.id = mi_idx.info_type_id\n  AND k.id = mk.keyword_id\n  AND cn.id = mc.company_id\n  AND c.name_pcode_nf = n.name_pcode_nf\n  AND c.surname_pcode = n.name_pcode_cf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 178.0,
+    "cost_optimized": 178.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 139.7,
+    "error": null
+  },
+  {
+    "id": "JOB-C22",
+    "original_sql": "SELECT\n  MIN(k.keyword) AS movie_keyword,\n  MIN(n.name) AS actor_name,\n  MIN(t.title) AS hero_movie\nFROM cast_info AS ci\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS cn\n  ON TRUE\nWHERE\n  k.keyword IN (\n    'superhero',\n    'sequel',\n    'second-part',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence'\n  )\n  AND n.name LIKE '%Downey%Robert%'\n  AND t.production_year > 2000\n  AND k.id = mk.keyword_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND n.id = ci.person_id\n  AND cn.name_pcode_nf = n.name_pcode_nf\n  AND cn.surname_pcode = n.surname_pcode",
+    "optimized_sql": "SELECT\n  MIN(k.keyword) AS movie_keyword,\n  MIN(n.name) AS actor_name,\n  MIN(t.title) AS hero_movie\nFROM cast_info AS ci\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS cn\n  ON TRUE\nWHERE\n  k.keyword IN (\n    'superhero',\n    'sequel',\n    'second-part',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence'\n  )\n  AND n.name LIKE '%Downey%Robert%'\n  AND t.production_year > 2000\n  AND k.id = mk.keyword_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND n.id = ci.person_id\n  AND cn.name_pcode_nf = n.name_pcode_nf\n  AND cn.surname_pcode = n.surname_pcode",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 76.0,
+    "cost_optimized": 76.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 63.7,
+    "error": null
+  },
+  {
+    "id": "JOB-C23",
+    "original_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_nf = chn.surname_pcode\n  AND ak.name_pcode_cf = n.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_nf = chn.surname_pcode\n  AND ak.name_pcode_cf = n.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 187.0,
+    "cost_optimized": 187.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 148.1,
+    "error": null
+  },
+  {
+    "id": "JOB-C24",
+    "original_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS cn2\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  k.keyword = 'character-name-in-title'\n  AND n.name LIKE '%Bert%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND ak.name_pcode_cf = cn2.name_pcode_nf\n  AND ak.name_pcode_nf = n.name_pcode_cf\n  AND ak.name_pcode_nf = cn2.surname_pcode\n  AND ak.name_pcode_cf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_movie\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN char_name AS cn2\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  k.keyword = 'character-name-in-title'\n  AND n.name LIKE '%Bert%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND ak.name_pcode_cf = cn2.name_pcode_nf\n  AND ak.name_pcode_nf = n.name_pcode_cf\n  AND ak.name_pcode_nf = cn2.surname_pcode\n  AND ak.name_pcode_cf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 119.0,
+    "cost_optimized": 119.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 80.0,
+    "error": null
+  },
+  {
+    "id": "JOB-C25",
+    "original_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_nf = chn.name_pcode_nf\n  AND ak.surname_pcode = cn.name_pcode_sf\n  AND chn.surname_pcode = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND ak.name_pcode_nf = chn.name_pcode_nf\n  AND ak.surname_pcode = cn.name_pcode_sf\n  AND chn.surname_pcode = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 200.0,
+    "cost_optimized": 200.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 166.3,
+    "error": null
+  },
+  {
+    "id": "JOB-C26",
+    "original_sql": "SELECT\n  MIN(mi.info) AS release_date,\n  MIN(miidx.info) AS rating,\n  MIN(t.title) AS german_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS miidx\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[de]'\n  AND ct.kind = 'production companies'\n  AND it.info = 'rating'\n  AND it2.info = 'release dates'\n  AND kt.kind = 'movie'\n  AND mi.movie_id = t.id\n  AND it2.id = mi.info_type_id\n  AND kt.id = t.kind_id\n  AND mc.movie_id = t.id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND miidx.movie_id = t.id\n  AND it.id = miidx.info_type_id\n  AND mi.movie_id = miidx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND miidx.movie_id = mc.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf\n  AND mi.movie_id = miidx.movie_id",
+    "optimized_sql": "SELECT\n  MIN(mi.info) AS release_date,\n  MIN(miidx.info) AS rating,\n  MIN(t.title) AS german_movie\nFROM company_name AS cn\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_info_idx AS miidx\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[de]'\n  AND ct.kind = 'production companies'\n  AND it.info = 'rating'\n  AND it2.info = 'release dates'\n  AND kt.kind = 'movie'\n  AND mi.movie_id = t.id\n  AND it2.id = mi.info_type_id\n  AND kt.id = t.kind_id\n  AND mc.movie_id = t.id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND miidx.movie_id = t.id\n  AND it.id = miidx.info_type_id\n  AND mi.movie_id = miidx.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND miidx.movie_id = mc.movie_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf\n  AND mi.movie_id = miidx.movie_id",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 121.0,
+    "cost_optimized": 121.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 114.0,
+    "error": null
+  },
+  {
+    "id": "JOB-C27",
+    "original_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_american_movie,\n  MIN(n.name) AS a1\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND k.keyword = 'character-name-in-title'\n  AND n.name LIKE 'B%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND cn.name_pcode_sf = n.name_pcode_nf\n  AND cn.name_pcode_nf = n.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_american_movie,\n  MIN(n.name) AS a1\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND k.keyword = 'character-name-in-title'\n  AND n.name LIKE 'B%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND cn.name_pcode_sf = n.name_pcode_nf\n  AND cn.name_pcode_nf = n.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 95.0,
+    "cost_optimized": 95.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 85.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C28",
+    "original_sql": "SELECT\n  MIN(kt.kind) AS movie_kind,\n  MIN(t.title) AS complete_us_internet_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cct1.kind = 'complete+verified'\n  AND cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND kt.kind IN ('movie')\n  AND mi.note LIKE '%internet%'\n  AND NOT mi.info IS NULL\n  AND (\n    mi.info LIKE 'USA:% 199%' OR mi.info LIKE 'USA:% 200%'\n  )\n  AND t.production_year > 1999\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cct1.id = cc.status_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(kt.kind) AS movie_kind,\n  MIN(t.title) AS complete_us_internet_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN company_name AS cn\n  ON TRUE\nJOIN company_type AS ct\n  ON TRUE\nJOIN info_type AS it1\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_info AS mi\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cct1.kind = 'complete+verified'\n  AND cn.country_code = '[us]'\n  AND it1.info = 'release dates'\n  AND kt.kind IN ('movie')\n  AND mi.note LIKE '%internet%'\n  AND NOT mi.info IS NULL\n  AND (\n    mi.info LIKE 'USA:% 199%' OR mi.info LIKE 'USA:% 200%'\n  )\n  AND t.production_year > 1999\n  AND kt.id = t.kind_id\n  AND t.id = mi.movie_id\n  AND t.id = mk.movie_id\n  AND t.id = mc.movie_id\n  AND t.id = cc.movie_id\n  AND mk.movie_id = mi.movie_id\n  AND mk.movie_id = mc.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mi.movie_id = mc.movie_id\n  AND mi.movie_id = cc.movie_id\n  AND mc.movie_id = cc.movie_id\n  AND k.id = mk.keyword_id\n  AND it1.id = mi.info_type_id\n  AND cn.id = mc.company_id\n  AND ct.id = mc.company_type_id\n  AND cct1.id = cc.status_id\n  AND cn.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 161.0,
+    "cost_optimized": 161.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 129.4,
+    "error": null
+  },
+  {
+    "id": "JOB-C29",
+    "original_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(n.name) AS playing_actor,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND mi_idx.info > '5.0'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND chn.surname_pcode = ak.surname_pcode\n  AND chn.name_pcode_nf = ak.name_pcode_nf\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND chn.name_pcode_nf = n.name_pcode_nf",
+    "optimized_sql": "SELECT\n  MIN(chn.name) AS character_name,\n  MIN(mi_idx.info) AS rating,\n  MIN(n.name) AS playing_actor,\n  MIN(t.title) AS complete_hero_movie\nFROM complete_cast AS cc\nJOIN comp_cast_type AS cct1\n  ON TRUE\nJOIN comp_cast_type AS cct2\n  ON TRUE\nJOIN char_name AS chn\n  ON TRUE\nJOIN cast_info AS ci\n  ON TRUE\nJOIN info_type AS it2\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN kind_type AS kt\n  ON TRUE\nJOIN movie_info_idx AS mi_idx\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nJOIN aka_name AS ak\n  ON TRUE\nWHERE\n  cct1.kind = 'cast'\n  AND cct2.kind LIKE '%complete%'\n  AND NOT chn.name IS NULL\n  AND (\n    chn.name LIKE '%man%' OR chn.name LIKE '%Man%'\n  )\n  AND it2.info = 'rating'\n  AND k.keyword IN (\n    'superhero',\n    'marvel-comics',\n    'based-on-comic',\n    'tv-special',\n    'fight',\n    'violence',\n    'magnet',\n    'web',\n    'claw',\n    'laser'\n  )\n  AND kt.kind = 'movie'\n  AND mi_idx.info > '5.0'\n  AND t.production_year > 2000\n  AND kt.id = t.kind_id\n  AND t.id = mk.movie_id\n  AND t.id = ci.movie_id\n  AND t.id = cc.movie_id\n  AND t.id = mi_idx.movie_id\n  AND mk.movie_id = ci.movie_id\n  AND mk.movie_id = cc.movie_id\n  AND mk.movie_id = mi_idx.movie_id\n  AND ci.movie_id = cc.movie_id\n  AND ci.movie_id = mi_idx.movie_id\n  AND cc.movie_id = mi_idx.movie_id\n  AND chn.id = ci.person_role_id\n  AND n.id = ci.person_id\n  AND k.id = mk.keyword_id\n  AND cct1.id = cc.subject_id\n  AND cct2.id = cc.status_id\n  AND it2.id = mi_idx.info_type_id\n  AND chn.surname_pcode = ak.surname_pcode\n  AND chn.name_pcode_nf = ak.name_pcode_nf\n  AND ak.name_pcode_cf = n.name_pcode_cf\n  AND chn.name_pcode_nf = n.name_pcode_nf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 193.0,
+    "cost_optimized": 193.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 154.6,
+    "error": null
+  },
+  {
+    "id": "JOB-C30",
+    "original_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_american_movie,\n  MIN(n.name) AS a1\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND k.keyword = 'character-name-in-title'\n  AND n.name LIKE 'B%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND n.name_pcode_nf = cn.name_pcode_nf\n  AND n.name_pcode_nf = cn.name_pcode_sf",
+    "optimized_sql": "SELECT\n  MIN(n.name) AS member_in_charnamed_american_movie,\n  MIN(n.name) AS a1\nFROM cast_info AS ci\nJOIN company_name AS cn\n  ON TRUE\nJOIN keyword AS k\n  ON TRUE\nJOIN movie_companies AS mc\n  ON TRUE\nJOIN movie_keyword AS mk\n  ON TRUE\nJOIN name AS n\n  ON TRUE\nJOIN title AS t\n  ON TRUE\nWHERE\n  cn.country_code = '[us]'\n  AND k.keyword = 'character-name-in-title'\n  AND n.name LIKE 'B%'\n  AND n.id = ci.person_id\n  AND ci.movie_id = t.id\n  AND t.id = mk.movie_id\n  AND mk.keyword_id = k.id\n  AND t.id = mc.movie_id\n  AND mc.company_id = cn.id\n  AND ci.movie_id = mc.movie_id\n  AND ci.movie_id = mk.movie_id\n  AND mc.movie_id = mk.movie_id\n  AND n.name_pcode_nf = cn.name_pcode_nf\n  AND n.name_pcode_nf = cn.name_pcode_sf",
+    "improved": false,
+    "speedup": 1.0,
+    "cost_original": 95.0,
+    "cost_optimized": 95.0,
+    "total_candidates": 2,
+    "n_verified": 0,
+    "n_rejected": 2,
+    "rejection_reasons": {
+      "solver_unknown": 2
+    },
+    "solver_time_ms": 0.0,
+    "total_time_ms": 107.1,
+    "error": null
+  }
+]

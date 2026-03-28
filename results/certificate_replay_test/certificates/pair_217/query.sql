@@ -1,0 +1,6 @@
+SELECT DISTINCT
+  p.email AS EMAIL
+FROM PERSON AS P
+CROSS JOIN PERSON AS D
+WHERE
+  d.id <> p.id AND d.email = p.email

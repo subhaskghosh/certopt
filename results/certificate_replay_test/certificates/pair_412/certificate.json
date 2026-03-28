@@ -1,0 +1,213 @@
+{
+  "version": "1.1",
+  "timestamp": "2026-03-24T06:58:35Z",
+  "proof_kind": "equivalence",
+  "scope": {
+    "k_rows": 3,
+    "int_bounds": [
+      -10,
+      10
+    ],
+    "string_symbols": [
+      "s0",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "date_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "null_semantics": true,
+    "solver_timeout_ms": 10000
+  },
+  "ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": "CUSTOMERS",
+        "table": null,
+        "column": "name"
+      }
+    ],
+    "from_table": {
+      "table": "CUSTOMERS",
+      "alias": "C"
+    },
+    "joins": [],
+    "where": {
+      "expr_type": "unary_op",
+      "sem_type": "UNKNOWN",
+      "nullability": "UNKNOWN",
+      "provenance": null,
+      "alias": null,
+      "op": "NOT",
+      "operand": {
+        "expr_type": "in_subquery",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "expr": {
+          "expr_type": "column_ref",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "table": null,
+          "column": "ID"
+        },
+        "query": {
+          "select": [
+            {
+              "expr_type": "column_ref",
+              "sem_type": "UNKNOWN",
+              "nullability": "UNKNOWN",
+              "provenance": null,
+              "alias": null,
+              "table": null,
+              "column": "CUSTOMERID"
+            }
+          ],
+          "from_table": {
+            "table": "ORDERS",
+            "alias": null
+          },
+          "joins": [],
+          "where": null,
+          "group_by": [],
+          "having": null,
+          "order_by": [],
+          "limit": null,
+          "distinct": false,
+          "set_op": null,
+          "set_right": null,
+          "grain": null,
+          "order_intent": "COSMETIC",
+          "provenance": null,
+          "confidence": null,
+          "rationale": null
+        }
+      }
+    },
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "ir_hash": "383b7bfcd3911cca",
+  "sql": "SELECT\n  name AS CUSTOMERS\nFROM CUSTOMERS AS C\nWHERE\n  NOT ID IN (\n    SELECT\n      CUSTOMERID\n    FROM ORDERS\n  )",
+  "sql_hash": "ef978e1b4822bbef",
+  "catalog_hash": "ab3a5425ccd4027e",
+  "dialect": "sqlite",
+  "constraints": [],
+  "solver_status": "skipped",
+  "solver_time_ms": 0,
+  "solver_stats": {},
+  "original_ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": "CUSTOMERS",
+        "table": null,
+        "column": "name"
+      }
+    ],
+    "from_table": {
+      "table": "CUSTOMERS",
+      "alias": null
+    },
+    "joins": [],
+    "where": {
+      "expr_type": "unary_op",
+      "sem_type": "UNKNOWN",
+      "nullability": "UNKNOWN",
+      "provenance": null,
+      "alias": null,
+      "op": "NOT",
+      "operand": {
+        "expr_type": "in_subquery",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "expr": {
+          "expr_type": "column_ref",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "table": null,
+          "column": "ID"
+        },
+        "query": {
+          "select": [
+            {
+              "expr_type": "column_ref",
+              "sem_type": "UNKNOWN",
+              "nullability": "UNKNOWN",
+              "provenance": null,
+              "alias": null,
+              "table": null,
+              "column": "CUSTOMERID"
+            }
+          ],
+          "from_table": {
+            "table": "ORDERS",
+            "alias": null
+          },
+          "joins": [],
+          "where": null,
+          "group_by": [],
+          "having": null,
+          "order_by": [],
+          "limit": null,
+          "distinct": false,
+          "set_op": null,
+          "set_right": null,
+          "grain": null,
+          "order_intent": "COSMETIC",
+          "provenance": null,
+          "confidence": null,
+          "rationale": null
+        }
+      }
+    },
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "original_sql": "SELECT\n  name AS CUSTOMERS\nFROM CUSTOMERS\nWHERE\n  NOT ID IN (\n    SELECT\n      CUSTOMERID\n    FROM ORDERS\n  )",
+  "original_ir_hash": "57e0c94e60a25931",
+  "original_sql_hash": "a39551c031d86f18",
+  "equivalence_status": "unsat",
+  "equivalence_solver_time_ms": 0.10058301268145442,
+  "equivalence_proven_k": 3,
+  "equivalence_complete": true
+}

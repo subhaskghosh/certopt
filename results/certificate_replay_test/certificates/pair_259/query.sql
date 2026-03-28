@@ -1,0 +1,12 @@
+SELECT
+  email AS EMAIL
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS COUNT_EMAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS CTE1
+WHERE
+  count_email > 1

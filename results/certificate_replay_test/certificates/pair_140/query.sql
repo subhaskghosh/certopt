@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS NUM
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS STATISTIC
+WHERE
+  num > 1

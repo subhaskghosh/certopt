@@ -1,0 +1,12 @@
+SELECT
+  email AS EMAIL
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS EMAIL_COUNT
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS PERSON2
+WHERE
+  email_count > 1

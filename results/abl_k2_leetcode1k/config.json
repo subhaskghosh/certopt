@@ -1,0 +1,14 @@
+{
+  "benchmark": "verieql",
+  "suite": "leetcode",
+  "k_rows": 2,
+  "timeout_ms": 30000,
+  "validate": true,
+  "max_pairs": 1000,
+  "dialect": "sqlite",
+  "pair_indices": null,
+  "random_sample": true,
+  "seed": 42,
+  "at_most_k": true,
+  "ignore_constraints": false
+}

@@ -1,0 +1,33 @@
+{
+  "benchmark": "BIRD-LLM-Candidates",
+  "n_queries": 500,
+  "n_candidates_total": 3071,
+  "k_rows": 2,
+  "timeout_ms": 5000,
+  "no_pruning": {
+    "solver_calls": 3071,
+    "pruned": 0,
+    "sat": 1464,
+    "unsat": 547,
+    "unknown": 1060,
+    "parse_errors": 0,
+    "solver_time_ms": 788855.9,
+    "n_candidates": 3071
+  },
+  "with_pruning": {
+    "solver_calls": 2056,
+    "pruned": 1015,
+    "sat": 678,
+    "unsat": 467,
+    "unknown": 911,
+    "parse_errors": 0,
+    "solver_time_ms": 587081.3,
+    "n_candidates": 3071
+  },
+  "savings": {
+    "solver_calls_saved": 1015,
+    "pct_solver_calls_saved": 33.1,
+    "time_saved_ms": 201774.6,
+    "candidates_pruned": 1015
+  }
+}

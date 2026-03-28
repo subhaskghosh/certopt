@@ -1,0 +1,13 @@
+SELECT
+  p.email AS EMAIL
+FROM PERSON AS P
+WHERE
+  P.EMAIL IN (
+    SELECT
+      EMAIL
+    FROM PERSON AS P2
+    WHERE
+      P2.ID <> P.ID
+  )
+GROUP BY
+  email

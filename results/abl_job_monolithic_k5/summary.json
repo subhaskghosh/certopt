@@ -1,0 +1,14 @@
+{
+  "benchmark": "JOB-Complex",
+  "total_queries": 30,
+  "n_improved": 0,
+  "n_errors": 0,
+  "avg_speedup": 1.0,
+  "total_time_s": 3.98,
+  "mean_time_ms": 132.6,
+  "median_time_ms": 120.7,
+  "p95_time_ms": 198.2,
+  "max_time_ms": 205.6,
+  "k_rows": 5,
+  "dialect": "postgres"
+}

@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS COUNT_MAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS TT
+WHERE
+  count_mail > 1

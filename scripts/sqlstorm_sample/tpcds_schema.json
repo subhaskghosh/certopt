@@ -1,0 +1,995 @@
+{
+  "dataset": "tpcds",
+  "tables": {
+    "catalog_sales": {
+      "columns": [
+        {
+          "name": "cs_sold_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_sold_time_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_bill_customer_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_bill_cdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_bill_hdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_bill_addr_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_customer_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_cdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_hdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_addr_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_call_center_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_catalog_page_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_ship_mode_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_warehouse_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_item_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "cs_promo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_order_number",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "cs_quantity",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "cs_wholesale_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_list_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_sales_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_discount_amt",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_sales_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_wholesale_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_list_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_coupon_amt",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_ext_ship_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_net_paid",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_net_paid_inc_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_net_paid_inc_ship",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_net_paid_inc_ship_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "cs_net_profit",
+          "type": "DECIMAL",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "cs_item_sk",
+        "cs_order_number"
+      ]
+    },
+    "customer": {
+      "columns": [
+        {
+          "name": "c_customer_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "c_customer_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "c_current_cdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_current_hdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_current_addr_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_first_shipto_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_first_sales_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_salutation",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_first_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_last_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_preferred_cust_flag",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_birth_day",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_birth_month",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_birth_year",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "c_birth_country",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_login",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_email_address",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "c_last_review_date_sk",
+          "type": "INT",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "c_customer_sk"
+      ]
+    },
+    "date_dim": {
+      "columns": [
+        {
+          "name": "d_date_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "d_date_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "d_date",
+          "type": "DATE",
+          "nullable": true
+        },
+        {
+          "name": "d_month_seq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_week_seq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_quarter_seq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_year",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_dow",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_moy",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_dom",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_qoy",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_fy_year",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_fy_quarter_seq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_fy_week_seq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_day_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_quarter_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_holiday",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_weekend",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_following_holiday",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_first_dom",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_last_dom",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_same_day_ly",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_same_day_lq",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "d_current_day",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_current_week",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_current_month",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_current_quarter",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "d_current_year",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "d_date_sk"
+      ]
+    },
+    "item": {
+      "columns": [
+        {
+          "name": "i_item_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "i_item_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "i_rec_start_date",
+          "type": "DATE",
+          "nullable": true
+        },
+        {
+          "name": "i_rec_end_date",
+          "type": "DATE",
+          "nullable": true
+        },
+        {
+          "name": "i_item_desc",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_current_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "i_wholesale_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "i_brand_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "i_brand",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_class_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "i_class",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_category_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "i_category",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_manufact_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "i_manufact",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_size",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_formulation",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_color",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_units",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_container",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "i_manager_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "i_product_name",
+          "type": "STRING",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "i_item_sk"
+      ]
+    },
+    "store": {
+      "columns": [
+        {
+          "name": "s_store_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "s_store_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "s_rec_start_date",
+          "type": "DATE",
+          "nullable": true
+        },
+        {
+          "name": "s_rec_end_date",
+          "type": "DATE",
+          "nullable": true
+        },
+        {
+          "name": "s_closed_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_store_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_number_employees",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_floor_space",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_hours",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_manager",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_market_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_geography_class",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_market_desc",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_market_manager",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_division_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_division_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_company_id",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "s_company_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_street_number",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_street_name",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_street_type",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_suite_number",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_city",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_county",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_state",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_zip",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_country",
+          "type": "STRING",
+          "nullable": true
+        },
+        {
+          "name": "s_gmt_offset",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "s_tax_precentage",
+          "type": "DECIMAL",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "s_store_sk"
+      ]
+    },
+    "store_returns": {
+      "columns": [
+        {
+          "name": "sr_returned_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_return_time_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_item_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "sr_customer_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "sr_cdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_hdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_addr_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_store_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_reason_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_ticket_number",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "sr_return_quantity",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "sr_return_amt",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_return_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_return_amt_inc_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_fee",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_return_ship_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_refunded_cash",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_reversed_charge",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_store_credit",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "sr_net_loss",
+          "type": "DECIMAL",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "sr_item_sk",
+        "sr_ticket_number"
+      ]
+    },
+    "store_sales": {
+      "columns": [
+        {
+          "name": "ss_sold_date_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_sold_time_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_item_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "ss_customer_sk",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "ss_cdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_hdemo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_addr_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_store_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_promo_sk",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_ticket_number",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "ss_quantity",
+          "type": "INT",
+          "nullable": true
+        },
+        {
+          "name": "ss_wholesale_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_list_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_sales_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_ext_discount_amt",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_ext_sales_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_ext_wholesale_cost",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_ext_list_price",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_ext_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_coupon_amt",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_net_paid",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_net_paid_inc_tax",
+          "type": "DECIMAL",
+          "nullable": true
+        },
+        {
+          "name": "ss_net_profit",
+          "type": "DECIMAL",
+          "nullable": true
+        }
+      ],
+      "primary_keys": [
+        "ss_item_sk",
+        "ss_ticket_number"
+      ]
+    }
+  },
+  "foreign_keys": [
+    {
+      "src_table": "store_sales",
+      "src_column": "ss_sold_date_sk",
+      "dst_table": "date_dim",
+      "dst_column": "d_date_sk"
+    },
+    {
+      "src_table": "store_sales",
+      "src_column": "ss_item_sk",
+      "dst_table": "item",
+      "dst_column": "i_item_sk"
+    },
+    {
+      "src_table": "store_sales",
+      "src_column": "ss_customer_sk",
+      "dst_table": "customer",
+      "dst_column": "c_customer_sk"
+    },
+    {
+      "src_table": "store_sales",
+      "src_column": "ss_store_sk",
+      "dst_table": "store",
+      "dst_column": "s_store_sk"
+    },
+    {
+      "src_table": "store_returns",
+      "src_column": "sr_returned_date_sk",
+      "dst_table": "date_dim",
+      "dst_column": "d_date_sk"
+    },
+    {
+      "src_table": "store_returns",
+      "src_column": "sr_item_sk",
+      "dst_table": "item",
+      "dst_column": "i_item_sk"
+    },
+    {
+      "src_table": "store_returns",
+      "src_column": "sr_customer_sk",
+      "dst_table": "customer",
+      "dst_column": "c_customer_sk"
+    },
+    {
+      "src_table": "store_returns",
+      "src_column": "sr_store_sk",
+      "dst_table": "store",
+      "dst_column": "s_store_sk"
+    },
+    {
+      "src_table": "catalog_sales",
+      "src_column": "cs_sold_date_sk",
+      "dst_table": "date_dim",
+      "dst_column": "d_date_sk"
+    },
+    {
+      "src_table": "catalog_sales",
+      "src_column": "cs_item_sk",
+      "dst_table": "item",
+      "dst_column": "i_item_sk"
+    },
+    {
+      "src_table": "catalog_sales",
+      "src_column": "cs_bill_customer_sk",
+      "dst_table": "customer",
+      "dst_column": "c_customer_sk"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+SELECT DISTINCT
+  email
+FROM PERSON
+WHERE
+  EMAIL IN (
+    SELECT
+      P.EMAIL
+    FROM PERSON AS P
+    GROUP BY
+      P.EMAIL
+    HAVING
+      COUNT(1) > 1
+  )

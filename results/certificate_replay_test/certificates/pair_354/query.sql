@@ -1,0 +1,13 @@
+SELECT DISTINCT
+  email AS EMAIL
+FROM PERSON AS A
+WHERE
+  (
+    SELECT
+      COUNT(EMAIL)
+    FROM PERSON AS B
+    WHERE
+      A.EMAIL = B.EMAIL
+    GROUP BY
+      EMAIL
+  ) > 1

@@ -1,0 +1,12 @@
+SELECT
+  sub.email
+FROM (
+  SELECT
+    EMAIL,
+    COUNT(EMAIL) AS TIME
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS SUB
+WHERE
+  sub.time > 1

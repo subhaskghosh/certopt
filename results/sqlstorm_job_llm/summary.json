@@ -1,0 +1,20 @@
+{
+  "benchmark": "sqlstorm",
+  "dataset": "job",
+  "total_pairs": 400,
+  "parsed": 279,
+  "our_equ": 175,
+  "our_neq": 14,
+  "our_unknown": 90,
+  "our_tmo": 113,
+  "our_parse_fail": 8,
+  "our_error": 0,
+  "total_time_s": 1854.31,
+  "mean_time_ms": 4635.2,
+  "median_time_ms": 1501.7,
+  "p95_time_ms": 12006.8,
+  "max_time_ms": 12047.0,
+  "k_rows": 2,
+  "timeout_ms": 5000,
+  "validate": true
+}

@@ -1,0 +1,76 @@
+{
+  "tables": {
+    "CUSTOMERS": {
+      "name": "CUSTOMERS",
+      "columns": [
+        {
+          "name": "ID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "NAME",
+          "sem_type": "STRING",
+          "nullable": true,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        }
+      ],
+      "primary_keys": [
+        "ID"
+      ],
+      "primary_key_groups": [
+        [
+          "ID"
+        ]
+      ],
+      "unique_columns": [],
+      "row_count": null,
+      "description": null
+    },
+    "ORDERS": {
+      "name": "ORDERS",
+      "columns": [
+        {
+          "name": "ID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": true,
+          "distinct_values": null,
+          "description": null
+        },
+        {
+          "name": "CUSTOMERID",
+          "sem_type": "INT",
+          "nullable": false,
+          "is_primary_key": false,
+          "distinct_values": null,
+          "description": null
+        }
+      ],
+      "primary_keys": [
+        "ID"
+      ],
+      "primary_key_groups": [
+        [
+          "ID"
+        ]
+      ],
+      "unique_columns": [],
+      "row_count": null,
+      "description": null
+    }
+  },
+  "foreign_keys": [
+    {
+      "src_table": "ORDERS",
+      "src_column": "CUSTOMERID",
+      "dst_table": "CUSTOMERS",
+      "dst_column": "ID"
+    }
+  ]
+}

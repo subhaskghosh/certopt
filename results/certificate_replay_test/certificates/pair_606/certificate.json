@@ -1,0 +1,179 @@
+{
+  "version": "1.1",
+  "timestamp": "2026-03-24T06:58:45Z",
+  "proof_kind": "equivalence",
+  "scope": {
+    "k_rows": 3,
+    "int_bounds": [
+      -10,
+      10
+    ],
+    "string_symbols": [
+      "s0",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "date_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "null_semantics": true,
+    "solver_timeout_ms": 10000
+  },
+  "ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "player_id"
+      },
+      {
+        "expr_type": "window_func",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": "FIRST_LOGIN",
+        "func_name": "FIRST_VALUE",
+        "args": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "EVENT_DATE"
+          }
+        ],
+        "partition_by": [
+          {
+            "expr_type": "column_ref",
+            "sem_type": "UNKNOWN",
+            "nullability": "UNKNOWN",
+            "provenance": null,
+            "alias": null,
+            "table": null,
+            "column": "PLAYER_ID"
+          }
+        ],
+        "order_by": [
+          {
+            "expr": {
+              "expr_type": "column_ref",
+              "sem_type": "UNKNOWN",
+              "nullability": "UNKNOWN",
+              "provenance": null,
+              "alias": null,
+              "table": null,
+              "column": "EVENT_DATE"
+            },
+            "direction": "ASC"
+          }
+        ],
+        "frame": null,
+        "distinct": false
+      }
+    ],
+    "from_table": {
+      "table": "ACTIVITY",
+      "alias": null
+    },
+    "joins": [],
+    "where": null,
+    "group_by": [],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": true,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "ir_hash": "4da36a9c547d6c37",
+  "sql": "SELECT DISTINCT\n  player_id,\n  FIRST_VALUE(EVENT_DATE) OVER (PARTITION BY PLAYER_ID ORDER BY EVENT_DATE ASC NULLS LAST) AS FIRST_LOGIN\nFROM ACTIVITY",
+  "sql_hash": "299e4be56dba9fd2",
+  "catalog_hash": "8129c8078e466ae8",
+  "dialect": "sqlite",
+  "constraints": [],
+  "solver_status": "skipped",
+  "solver_time_ms": 0,
+  "solver_stats": {},
+  "original_ir": {
+    "select": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "player_id"
+      },
+      {
+        "expr_type": "agg_call",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": "FIRST_LOGIN",
+        "func": "MIN",
+        "arg": {
+          "expr_type": "column_ref",
+          "sem_type": "UNKNOWN",
+          "nullability": "UNKNOWN",
+          "provenance": null,
+          "alias": null,
+          "table": null,
+          "column": "event_date"
+        },
+        "distinct": false
+      }
+    ],
+    "from_table": {
+      "table": "ACTIVITY",
+      "alias": null
+    },
+    "joins": [],
+    "where": null,
+    "group_by": [
+      {
+        "expr_type": "column_ref",
+        "sem_type": "UNKNOWN",
+        "nullability": "UNKNOWN",
+        "provenance": null,
+        "alias": null,
+        "table": null,
+        "column": "player_id"
+      }
+    ],
+    "having": null,
+    "order_by": [],
+    "limit": null,
+    "distinct": false,
+    "set_op": null,
+    "set_right": null,
+    "grain": null,
+    "order_intent": "COSMETIC",
+    "provenance": null,
+    "confidence": null,
+    "rationale": null
+  },
+  "original_sql": "SELECT\n  player_id,\n  MIN(event_date) AS FIRST_LOGIN\nFROM ACTIVITY\nGROUP BY\n  player_id",
+  "original_ir_hash": "13607b79ff092892",
+  "original_sql_hash": "2a9131ce87c90d55",
+  "equivalence_status": "unsat",
+  "equivalence_solver_time_ms": 33.06845802580938,
+  "equivalence_proven_k": 3,
+  "equivalence_complete": true
+}

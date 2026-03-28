@@ -1,0 +1,10 @@
+{
+  "benchmark": "sqlstorm",
+  "dataset": "job",
+  "k_rows": 2,
+  "timeout_ms": 10000,
+  "validate": true,
+  "max_pairs": null,
+  "dialect": "postgres",
+  "at_most_k": true
+}

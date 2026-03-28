@@ -1,0 +1,12 @@
+SELECT
+  email
+FROM (
+  SELECT
+    COUNT(EMAIL) AS C,
+    EMAIL
+  FROM PERSON
+  GROUP BY
+    EMAIL
+) AS DUPE
+WHERE
+  c > 1

@@ -1,0 +1,10 @@
+{
+  "_description": "SQLStorm TPC-DS benchmark, formal witness proof",
+  "benchmark": "sqlstorm",
+  "dataset": "tpcds",
+  "k_rows": 3,
+  "timeout_ms": 10000,
+  "at_most_k": true,
+  "validate": true,
+  "output": "results/sqlstorm_tpcds"
+}

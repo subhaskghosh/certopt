@@ -1,0 +1,12 @@
+SELECT
+  name AS CUSTOMERS
+FROM CUSTOMERS
+LEFT JOIN (
+  SELECT DISTINCT
+    CUSTOMERID,
+    1 AS HAS_ORDER
+  FROM ORDERS
+) AS SUBQ
+  ON customers.id = subq.customerid
+WHERE
+  has_order IS NULL
