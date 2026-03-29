@@ -23,25 +23,73 @@ class RewriteFamily:
     members: list[str] = field(default_factory=list)
 
 
-def classify_rewrites(candidates: list[Candidate]) -> list[RewriteFamily]:
-    """Group candidates into families by rule_id + structural key.
+def _structural_signature(candidate: Candidate) -> str:
+    """Compute the structural signature for family grouping.
 
-    The structural key captures the specific transformation applied:
-    - R1: "pred_push:{table}" for which table the predicate was pushed to
-    - R3: "join_elim:{table}" for which table was eliminated
-    - R5: "join_reorder:{order_hash}" for the specific join order
-    - Others: just the rule_id as the key
+    Candidates are grouped by (rule_id, structural_shape) so that
+    a witness invalidating one member prunes the entire family.
+
+    - R1 (predicate pushdown): group by rule + target join table
+    - R2 (predicate pullup): group by rule + source join table
+    - R3 (join elimination): group by rule + eliminated table
+    - R5 (join reorder): all reorderings share one family
+    - LLM candidates: all share one family
+    - Others: group by rule_id alone
+    """
+    rule_id = candidate.source or "unknown"
+    ir = candidate.ir
+
+    if rule_id == "R1" and ir.joins:
+        # Predicate pushdown: the structural defect is tied to which
+        # table the predicate was pushed to.  Approximate by the set
+        # of join tables whose ON clause was modified.
+        join_tables = frozenset(
+            j.right.name.lower() if hasattr(j.right, 'name') else str(j.right)
+            for j in ir.joins if j.on is not None
+        )
+        return f"R1:{','.join(sorted(join_tables))}"
+
+    if rule_id == "R2" and ir.joins:
+        join_tables = frozenset(
+            j.right.name.lower() if hasattr(j.right, 'name') else str(j.right)
+            for j in ir.joins if j.on is not None
+        )
+        return f"R2:{','.join(sorted(join_tables))}"
+
+    if rule_id == "R3":
+        # Join elimination: group by which table was eliminated.
+        # The eliminated table is absent from joins in the rewrite,
+        # but we don't have the original IR here.  Group all R3
+        # candidates together since they share the structural
+        # pattern of FK→PK elimination.
+        return "R3"
+
+    if rule_id == "R5":
+        # Join reorder: all permutations share the same structural
+        # defect (wrong join order), so group together.
+        return "R5"
+
+    if rule_id == "llm":
+        # All LLM candidates share a family.
+        return "llm"
+
+    # Default: group by rule_id
+    return rule_id
+
+
+def classify_rewrites(candidates: list[Candidate]) -> list[RewriteFamily]:
+    """Group candidates into families by rule_id + structural signature.
+
+    The structural signature captures the syntactic shape of the
+    transformation.  When a witness invalidates one member of a
+    family, all members sharing the same structural defect are pruned
+    without individual solver calls.
     """
     groups: dict[str, list[str]] = defaultdict(list)
 
     for c in candidates:
-        rule_id = c.source or "unknown"
-
-        # Extract structural key from candidate ID
-        # IDs look like "R1_0", "R3_0", "R5_2", etc.
-        structural_key = f"{rule_id}:{c.id}"
-
-        groups[structural_key].append(c.id)
+        key = _structural_signature(c)
+        groups[key].append(c.id)
 
     families = [
         RewriteFamily(

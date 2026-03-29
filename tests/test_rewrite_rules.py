@@ -610,18 +610,19 @@ class TestRewriteGenerator:
 
 class TestFamilies:
 
-    def test_classify_groups_by_candidate(self, catalog):
-        """Each candidate gets its own family (per-candidate structural key)."""
+    def test_classify_groups_by_structural_signature(self, catalog):
+        """Candidates from the same rule share a family."""
         candidates = [
             Candidate(id="R1_0", ir=_simple_query(), confidence=0.8, source="R1"),
             Candidate(id="R1_1", ir=_simple_query(), confidence=0.8, source="R1"),
             Candidate(id="R5_0", ir=_simple_query(), confidence=0.8, source="R5"),
         ]
         families = classify_rewrites(candidates)
-        assert len(families) == 3
+        # R1_0 and R1_1 share a family; R5_0 is separate
+        assert len(families) == 2
 
-    def test_prune_family_only_affects_rejected(self, catalog):
-        """Rejecting one candidate does not prune siblings from the same rule."""
+    def test_prune_family_prunes_siblings(self, catalog):
+        """Rejecting one candidate prunes siblings sharing the structural defect."""
         candidates = [
             Candidate(id="R1_0", ir=_simple_query(), confidence=0.8, source="R1"),
             Candidate(id="R1_1", ir=_simple_query(), confidence=0.8, source="R1"),
@@ -630,8 +631,8 @@ class TestFamilies:
         families = classify_rewrites(candidates)
         pruned = prune_families(families, rejected_ids={"R1_0"})
         assert "R1_0" in pruned
-        assert "R1_1" not in pruned
-        assert "R5_0" not in pruned
+        assert "R1_1" in pruned  # sibling pruned
+        assert "R5_0" not in pruned  # different family
 
     def test_prune_empty_when_no_rejections(self, catalog):
         candidates = [
