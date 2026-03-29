@@ -69,9 +69,10 @@ def _structural_signature(candidate: Candidate) -> str:
         # defect (wrong join order), so group together.
         return "R5"
 
-    if rule_id == "llm":
-        # All LLM candidates share a family.
-        return "llm"
+    if rule_id.startswith("llm"):
+        # LLM candidates grouped by provider/prompt variant.
+        # source is "llm" or "llm:gpt-4" etc.
+        return rule_id
 
     # Default: group by rule_id
     return rule_id
