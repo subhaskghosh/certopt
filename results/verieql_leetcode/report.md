@@ -14,7 +14,7 @@
 | Both proved EQU | 12042 |
 | Both proved NEQ | 2072 |
 | Our NEQ vs VeriEQL EQU | 241 (false rej: 1.6%) |
-| Speedup vs VeriEQL | 1.2× |
+| Speedup vs VeriEQL | 140.5× |
 | Total time | 31235.62s |
 
 ## Cross-Tabulation (Our vs VeriEQL)

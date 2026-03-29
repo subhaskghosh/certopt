@@ -538,19 +538,30 @@ def _run_verieql_suite(suite_name: str, args) -> tuple[list[dict], list[dict], d
                     if r["our_result"] == "NEQ" and r["verieql_result"] == "EQU")
     false_rejection_rate = false_neq / vq_equ_total * 100 if vq_equ_total > 0 else 0.0
 
-    # FIX.28a: Speedup is only meaningful for full-suite runs.
-    # Per-pair times from the VeriEQL paper (full suite totals):
-    # calcite=40044s (113 pairs), literature=~2000s, leetcode=~38000s
-    verieql_times_full = {"calcite": (40044, 397), "literature": (2000, 64), "leetcode": (38000, 23994)}
-    suite_info = verieql_times_full.get(suite_name)
-    if suite_info and len(results) == suite_info[1]:
-        speedup_vs_verieql = round(suite_info[0] / t_total, 1) if t_total > 0 else 0.0
-    elif suite_info and len(results) < suite_info[1]:
-        # Subset run: compute per-pair speedup (avoid inflated numbers)
-        per_pair_vq = suite_info[0] / suite_info[1]
-        speedup_vs_verieql = round(per_pair_vq * len(results) / t_total, 1) if t_total > 0 else 0.0
-    else:
-        speedup_vs_verieql = 0.0
+    # Load VeriEQL baseline times from reference file
+    baseline_path = Path(__file__).resolve().parent.parent / "results" / "verieql_baseline_times.json"
+    speedup_vs_verieql = 0.0
+    try:
+        baseline_data = json.loads(baseline_path.read_text())
+        suite_baseline = baseline_data.get(suite_name)
+        if suite_baseline:
+            num_pairs = suite_baseline["num_pairs"]
+            per_pair = suite_baseline["per_pair_times_s"]
+            if len(results) == num_pairs:
+                # Full-suite run: use total from baseline
+                vq_time = suite_baseline["total_time_s"]
+            else:
+                # Subset run: sum per-pair times for the first N pairs
+                # If per_pair list is shorter than N, repeat last value
+                n = len(results)
+                times = per_pair[:n]
+                if len(times) < n:
+                    times += [per_pair[-1]] * (n - len(times))
+                vq_time = sum(times)
+            if t_total > 0:
+                speedup_vs_verieql = round(vq_time / t_total, 1)
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        pass
 
     # Summary
     print(f"\n{'='*70}")
@@ -630,6 +641,7 @@ def _run_verieql_suite(suite_name: str, args) -> tuple[list[dict], list[dict], d
         "p95_time_ms": round(p95_time, 1),
         "max_time_ms": round(max_time, 1),
         "speedup_vs_verieql": speedup_vs_verieql,
+        "verieql_baseline_source": "results/verieql_baseline_times.json",
         "k_rows": args.k_rows,
         "timeout_ms": args.timeout_ms,
         "validate": args.validate,

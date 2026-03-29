@@ -32,8 +32,9 @@
   "median_time_ms": 576.2,
   "p95_time_ms": 30400.0,
   "max_time_ms": 196798.3,
-  "speedup_vs_verieql": 0.4,
+  "speedup_vs_verieql": 51.1,
   "k_rows": 4,
   "timeout_ms": 30000,
-  "validate": true
+  "validate": true,
+  "verieql_baseline_source": "results/verieql_baseline_times.json"
 }
