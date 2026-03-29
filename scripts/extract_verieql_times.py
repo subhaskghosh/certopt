@@ -5,7 +5,7 @@ import json
 import os
 
 DATA_DIR = os.path.join(
-    os.path.dirname(__file__), "..", "data", "VeriEQL", "experiments", "2023_03_27"
+    os.path.dirname(__file__), "..", "data", "VeriEQL", "experiments", "2025_10_31"
 )
 OUTPUT_PATH = os.path.join(
     os.path.dirname(__file__), "..", "results", "verieql_baseline_times.json"
@@ -36,21 +36,20 @@ def process_file(filepath):
 
 
 result = {
-    "source": "data/VeriEQL/experiments/2023_03_27",
     "description": (
         "Per-pair VeriEQL measured times (traversing + solving) from their "
-        "published experiment data. Timeout entries (null) excluded from measured time."
+        "published experiment data (2025_10_31, latest). Timeout entries (null) "
+        "excluded from measured time. VeriEQL uses 600s per-pair timeout."
     ),
-    "timeout_s": 600,
-    "suites": {},
+    "source": "data/VeriEQL/experiments/2025_10_31",
 }
 
 for suite in SUITES:
     filepath = os.path.join(DATA_DIR, f"{suite}.out")
     per_pair_times = process_file(filepath)
     total_time = round(sum(per_pair_times), 1)
-    result["suites"][suite] = {
-        "total_pairs": len(per_pair_times),
+    result[suite] = {
+        "num_pairs": len(per_pair_times),
         "total_time_s": total_time,
         "per_pair_times_s": per_pair_times,
     }
